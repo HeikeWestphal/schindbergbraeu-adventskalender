@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#EAF3EC">
+<meta name="theme-color" content="#F1F6F1">
 
 <title>Schindbergbräu · Adventskalender 2026</title>
 
@@ -15,9 +15,13 @@
   --sage: #B8D5C2;
   --green: #6FAD91;
   --green-dark: #315D49;
+
+  /* Farben passend zum Logo */
+  --logo-green: #17220D;
+  --logo-gold: #C99A28;
+
   --red: #C94C4C;
   --red-dark: #A63B3B;
-  --gold: #D9B65E;
   --white: #FFFFFF;
   --ink: #294638;
   --muted: #71877A;
@@ -32,8 +36,8 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 10% 5%, #ffffff 0, transparent 35%),
-    linear-gradient(145deg, var(--sage-light), #F8FBF8 55%, var(--mint));
+    radial-gradient(circle at 10% 5%, #FFFFFF 0, transparent 35%),
+    linear-gradient(145deg, #F1F6F1, #FFFFFF 55%, var(--mint));
   color: var(--ink);
   font: 16px/1.65 Georgia, "Times New Roman", serif;
 }
@@ -44,40 +48,71 @@ body {
   padding: 25px 24px 60px;
 }
 
-/* KOPFBEREICH */
+/* =====================================
+   KOPFBEREICH UND LOGO
+===================================== */
 
 .hero {
   text-align: center;
   padding: 28px 0 38px;
 }
 
-h1 {
-  color: var(--green-dark);
-  font: normal clamp(28px, 4vw, 45px)/1.2 Georgia, serif;
-  margin: 0 0 24px;
+.hero-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 2vw, 24px);
+  margin-bottom: 30px;
+}
+
+.hero-der,
+.hero-calendar {
+  color: var(--logo-green);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+
+.hero-der {
+  font-size: clamp(20px, 2.8vw, 34px);
+  white-space: nowrap;
+}
+
+.hero-calendar {
+  font-size: clamp(17px, 2.5vw, 31px);
+  line-height: 1.3;
+  text-align: left;
+}
+
+.hero-logo {
+  flex: 0 1 290px;
+  min-width: 0;
 }
 
 .hero-logo img {
   display: block;
-  width: min(280px, 65%);
-  max-height: 240px;
+  width: 100%;
+  height: auto;
   object-fit: contain;
-  margin: 0 auto 25px;
 }
 
 .intro {
   max-width: 700px;
   margin: 0 auto;
-  color: var(--green-dark);
+  color: var(--logo-green);
   font-size: 17px;
   line-height: 1.75;
 }
 
 .prost {
   margin-top: 17px;
-  color: var(--red-dark);
-  font-size: 21px;
+  color: var(--logo-green);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
   font-weight: bold;
+  letter-spacing: .10em;
+  text-transform: uppercase;
 }
 
 .rule {
@@ -86,14 +121,14 @@ h1 {
   gap: 14px;
   max-width: 420px;
   margin: 28px auto 0;
-  color: var(--gold);
+  color: var(--logo-gold);
 }
 
 .rule::before,
 .rule::after {
   content: "";
   height: 1px;
-  background: #D9B65E99;
+  background: #C99A2877;
   flex: 1;
 }
 
@@ -102,7 +137,9 @@ h1 {
   font-weight: normal;
 }
 
-/* ADVENTSKALENDER */
+/* =====================================
+   ADVENTSTÜRCHEN
+===================================== */
 
 .calendar {
   display: grid;
@@ -115,7 +152,7 @@ h1 {
   aspect-ratio: 1;
   border: 1px solid var(--sage);
   background: linear-gradient(145deg, #FFFFFF, #DDEDE2);
-  color: var(--green-dark);
+  color: var(--logo-green);
   cursor: pointer;
   overflow: hidden;
 
@@ -125,7 +162,7 @@ h1 {
   justify-content: center;
 
   box-shadow:
-    inset 0 0 0 4px #ffffffaa,
+    inset 0 0 0 4px #FFFFFFAA,
     0 5px 14px #315D4912;
 
   transition:
@@ -151,14 +188,14 @@ h1 {
 }
 
 .door:focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--logo-gold);
   outline-offset: 3px;
 }
 
 .number {
   font-size: clamp(32px, 4vw, 49px);
   line-height: 1;
-  color: var(--green-dark);
+  color: var(--logo-green);
 }
 
 .door-label {
@@ -204,7 +241,9 @@ h1 {
   filter: grayscale(.25);
 }
 
-/* HINWEIS UND FUSSZEILE */
+/* =====================================
+   HINWEIS UND FUSSZEILE
+===================================== */
 
 .hint {
   text-align: center;
@@ -223,19 +262,21 @@ footer {
 }
 
 footer strong {
-  color: var(--green-dark);
+  color: var(--logo-green);
   font-weight: normal;
   letter-spacing: .1em;
 }
 
-/* POPUP */
+/* =====================================
+   POPUP
+===================================== */
 
 dialog {
   width: min(680px, 92vw);
   max-height: 90vh;
   overflow-y: auto;
   padding: 0;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--logo-gold);
   background: #FFFFFF;
   color: var(--ink);
   box-shadow: 0 24px 80px #29463844;
@@ -267,14 +308,14 @@ dialog::backdrop {
 .close {
   border: 0;
   background: none;
-  color: var(--green-dark);
+  color: var(--logo-green);
   font-size: 32px;
   cursor: pointer;
   line-height: 1;
 }
 
 .modal h2 {
-  color: var(--green-dark);
+  color: var(--logo-green);
   font-size: clamp(27px, 5vw, 39px);
   font-weight: normal;
   line-height: 1.2;
@@ -287,7 +328,7 @@ dialog::backdrop {
   background: linear-gradient(135deg, var(--sage-light), var(--mint));
   display: grid;
   place-items: center;
-  color: var(--green-dark);
+  color: var(--logo-green);
   font-size: 60px;
   border: 1px solid var(--sage);
 }
@@ -298,14 +339,34 @@ dialog::backdrop {
   line-height: 1.8;
 }
 
-@media(max-width: 800px) {
+/* =====================================
+   TABLET
+===================================== */
+
+@media(max-width: 850px) {
   .calendar {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
   }
+
+  .hero-heading {
+    gap: 12px;
+  }
+
+  .hero-logo {
+    flex-basis: 240px;
+  }
+
+  .hero-calendar {
+    font-size: clamp(16px, 2.5vw, 23px);
+  }
 }
 
-@media(max-width: 480px) {
+/* =====================================
+   SMARTPHONE
+===================================== */
+
+@media(max-width: 650px) {
   .page {
     padding: 15px 14px 40px;
   }
@@ -314,15 +375,31 @@ dialog::backdrop {
     padding: 25px 0 28px;
   }
 
-  h1 {
-    font-size: 29px;
+  .hero-heading {
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 25px;
   }
 
-  .hero-logo img {
-    width: min(230px, 70%);
+  .hero-der {
+    font-size: 25px;
+  }
+
+  .hero-logo {
+    width: min(280px, 75%);
+    flex: 0 1 auto;
+  }
+
+  .hero-calendar {
+    font-size: 22px;
+    text-align: center;
   }
 
   .intro {
+    font-size: 15px;
+  }
+
+  .prost {
     font-size: 15px;
   }
 
@@ -362,10 +439,20 @@ dialog::backdrop {
 
   <section class="hero">
 
-    <h1>Der Schindbergbräu Adventskalender · 2026</h1>
+    <div class="hero-heading">
 
-    <div class="hero-logo">
-      <img src="bilder/Schindberg-Bräu mit Dorfpanorama.png" alt="Schindbergbräu Dorflogo">
+      <span class="hero-der">Der</span>
+
+      <div class="hero-logo">
+        <img
+          src="bilder/schindbergbräu-logo-transparent.png"
+          alt="Schindbergbräu Dorflogo">
+      </div>
+
+      <span class="hero-calendar">
+        Adventskalender · 2026
+      </span>
+
     </div>
 
     <p class="intro">
@@ -399,13 +486,14 @@ dialog::backdrop {
 
 </main>
 
-<!-- POPUP FÜR DIE SPRÜCHE -->
+<!-- POPUP -->
 
 <dialog id="storyDialog" aria-labelledby="storyTitle">
 
   <div class="modal">
 
     <div class="modal-top">
+
       <div class="modal-kicker" id="modalDay">
         Türchen 1 · Schindbergbräu Advent
       </div>
@@ -414,11 +502,12 @@ dialog::backdrop {
         class="close"
         id="closeDialog"
         aria-label="Schließen">×</button>
+
     </div>
 
     <h2 id="storyTitle"></h2>
 
-    <div class="modal-art" id="storyArt" aria-hidden="true">🍻</div>
+    <div class="modal-art" id="storyArt" aria-hidden="true">🥂</div>
 
     <div class="modal-copy" id="storyText"></div>
 
@@ -585,7 +674,7 @@ const stories = [
    VORSCHAU UND DATUMSFREIGABE
 ========================================== */
 
-/* true = alle Türchen sind zum Testen geöffnet.
+/* true = alle Türchen zum Testen geöffnet.
    Für den echten Adventskalender auf false setzen. */
 
 const PREVIEW_MODE = true;
@@ -602,7 +691,7 @@ function isAvailable(day) {
 
 
 /* ==========================================
-   SPEICHERN BEREITS GEÖFFNETER TÜRCHEN
+   SPEICHERN GEÖFFNETER TÜRCHEN
 ========================================== */
 
 const storageKey = "schindbergbraeu-advent-2026-opened";
@@ -610,6 +699,7 @@ const storageKey = "schindbergbraeu-advent-2026-opened";
 let opened = [];
 
 try {
+
   const saved = JSON.parse(
     localStorage.getItem(storageKey) || "[]"
   );
