@@ -1,32 +1,35 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="de">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#12392e">
+<meta name="theme-color" content="#EAF3EC">
 <title>Schindbergbräu · Adventskalender 2026</title>
-
 <style>
 :root {
-  --forest: #12392e;
-  --forest2: #1c5140;
-  --cream: #fffaf0;
-  --copper: #d45b43;
-  --gold: #edc66b;
-  --ink: #252b27;
-  --muted: #d5dfd5;
+  --sage-light: #EAF3EC;
+  --mint: #D7E9DD;
+  --sage: #B8D5C2;
+  --green: #6FAD91;
+  --green-dark: #315D49;
+  --red: #C94C4C;
+  --red-dark: #A63B3B;
+  --gold: #D9B65E;
+  --white: #FFFFFF;
+  --ink: #294638;
+  --muted: #71877A;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
+  color: var(--ink);
+  font: 15px/1.65 Arial, sans-serif;
   background:
-    radial-gradient(ellipse at 50% 0%, #285c43 0%, transparent 55%),
-    var(--forest);
-  color: var(--cream);
-  font: 15px/1.65 Georgia, "Times New Roman", serif;
+    radial-gradient(circle at 15% 10%, #ffffff 0, transparent 34%),
+    linear-gradient(145deg, #F5FAF6, var(--sage-light) 55%, #DDEDE2);
 }
 
 .page {
@@ -36,9 +39,9 @@ body {
 }
 
 header {
-  border-bottom: 1px solid #ffffff25;
-  padding: 23px 24px;
-  background: #102d25cc;
+  padding: 20px 24px;
+  border-bottom: 1px solid #315D4918;
+  background: #ffffff9c;
 }
 
 .head-inner {
@@ -54,75 +57,72 @@ header {
   display: flex;
   align-items: center;
   gap: 13px;
-  color: var(--cream);
+  color: var(--green-dark);
   text-decoration: none;
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  border: 1px solid var(--gold);
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--gold);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  color: var(--gold);
-  font-size: 25px;
-  box-shadow: 0 0 18px #edc66b30;
+  color: var(--red);
+  font-size: 24px;
+  background: white;
 }
 
 .brand-name {
-  font: bold 22px/1.05 Georgia, serif;
-  letter-spacing: .06em;
+  font: bold 21px Georgia, serif;
+  letter-spacing: .05em;
   text-transform: uppercase;
 }
 
 .brand-sub {
   display: block;
-  margin-top: 5px;
-  color: var(--gold);
-  font: 10px/1.2 Arial, sans-serif;
-  letter-spacing: .25em;
+  margin-top: 4px;
+  color: var(--muted);
+  font: 10px Arial, sans-serif;
+  letter-spacing: .18em;
 }
 
 .back {
-  color: var(--muted);
+  color: var(--green-dark);
   font: 12px Arial, sans-serif;
   text-decoration: none;
 }
 
-.back:hover { color: var(--gold); }
+.back:hover { color: var(--red); }
 
 .hero {
   text-align: center;
-  padding: 52px 0 38px;
+  padding: 48px 0 35px;
 }
 
 .kicker {
-  font: 11px Arial, sans-serif;
-  letter-spacing: .28em;
+  color: var(--red);
+  font: bold 11px Arial, sans-serif;
+  letter-spacing: .25em;
   text-transform: uppercase;
-  color: var(--gold);
 }
 
 h1 {
-  font-size: clamp(36px, 6vw, 64px);
-  font-weight: normal;
-  line-height: 1.05;
+  font: normal clamp(36px, 6vw, 64px)/1.08 Georgia, serif;
   margin: 13px 0 16px;
-  color: var(--cream);
+  color: var(--green-dark);
 }
 
 h1 span {
-  color: var(--gold);
+  color: var(--red);
   font-style: italic;
 }
 
 .intro {
   max-width: 690px;
   margin: 0 auto;
-  color: #e1e9df;
-  font-size: 17px;
-  line-height: 1.7;
+  color: #587264;
+  font: 17px/1.75 Georgia, serif;
 }
 
 .rule {
@@ -131,65 +131,70 @@ h1 span {
   gap: 14px;
   max-width: 420px;
   margin: 27px auto 0;
-  color: var(--copper);
+  color: var(--gold);
 }
 
-.rule:before,
-.rule:after {
+.rule:before, .rule:after {
   content: "";
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold));
+  background: #D9B65E99;
   flex: 1;
 }
 
-.rule:after { transform: scaleX(-1); }
-
 .rule b {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: normal;
-  color: var(--gold);
 }
 
 .calendar {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 14px;
+  gap: 13px;
 }
 
 .door {
   position: relative;
   aspect-ratio: 1;
-  border: 1px solid #edc66b;
+  border: 1px solid #A9CBB5;
   border-radius: 5px;
-  background: linear-gradient(145deg, #276347, #12392e 75%);
-  color: var(--cream);
+  background: linear-gradient(145deg, #FFFFFF, #E5F1E8);
+  color: var(--green-dark);
   cursor: pointer;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    inset 0 0 0 4px #ffffff0c,
-    inset 0 0 25px #0003,
-    0 5px 14px #0002;
-  transition: transform .2s, box-shadow .2s, background .2s;
+  box-shadow: 0 4px 12px #315D4910,
+              inset 0 0 0 4px #ffffffb0;
+  transition: transform .2s, border-color .2s, background .2s,
+              box-shadow .2s;
 }
 
 .door:before {
   content: "";
   position: absolute;
   inset: 7px;
-  border: 1px solid #edc66b70;
+  border: 1px solid #D9B65E80;
   border-radius: 2px;
   pointer-events: none;
 }
 
+.door:nth-child(3n+2) {
+  background: linear-gradient(145deg, #F7FBF8, #DCEDE2);
+}
+
+.door:nth-child(3n) {
+  background: linear-gradient(145deg, #FFFFFF, #F8E9E6);
+  border-color: #E8B7B1;
+}
+
 .door:hover:not(:disabled) {
-  transform: translateY(-5px) scale(1.025);
-  border-color: #fff0b0;
-  background: linear-gradient(145deg, #b94738, #812d2b);
-  box-shadow: 0 8px 24px #0005, 0 0 20px #edc66b30;
+  transform: translateY(-5px);
+  border-color: var(--red);
+  background: linear-gradient(145deg, #FFFDFC, #F8DEDA);
+  box-shadow: 0 9px 20px #A63B3B20,
+              0 0 0 2px #D9B65E55;
 }
 
 .door:focus-visible {
@@ -198,60 +203,60 @@ h1 span {
 }
 
 .number {
-  font-size: clamp(30px, 4vw, 48px);
-  line-height: 1;
-  color: var(--gold);
-  text-shadow: 0 2px 8px #0004;
+  font: normal clamp(30px, 4vw, 48px)/1 Georgia, serif;
+  color: var(--red);
 }
 
 .door-label {
   margin-top: 12px;
-  font: 9px Arial, sans-serif;
+  color: var(--green-dark);
+  font: bold 9px Arial, sans-serif;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: #f5e9d1;
 }
 
 .door-icon {
   position: absolute;
   right: 12px;
   top: 11px;
-  color: var(--gold);
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .door.locked {
-  filter: saturate(.45);
-  opacity: .65;
+  filter: saturate(.55);
+  opacity: .7;
   cursor: not-allowed;
 }
 
 .door.opened {
-  background: linear-gradient(145deg, #a94335, #702d2b);
-  border-color: #f1c875;
+  background: linear-gradient(145deg, #F4DAD5, #EFC5BE);
+  border-color: var(--red);
 }
 
-.door.opened .number { font-size: 30px; }
+.door.opened .number {
+  color: var(--red-dark);
+  font-size: 30px;
+}
 
 .hint {
   text-align: center;
-  color: #d5dfd5;
+  color: var(--muted);
   font: 11px/1.6 Arial, sans-serif;
   margin: 24px 0 0;
 }
 
 footer {
   margin-top: 48px;
-  border-top: 1px solid #ffffff25;
+  border-top: 1px solid #315D4925;
   padding-top: 20px;
   text-align: center;
-  color: #d5dfd5;
+  color: var(--muted);
   font: italic 14px Georgia, serif;
 }
 
 footer strong {
-  color: var(--gold);
-  font-weight: normal;
+  color: var(--red);
+  font-weight: bold;
   letter-spacing: .08em;
 }
 
@@ -260,13 +265,16 @@ dialog {
   max-height: 90vh;
   padding: 0;
   border: 1px solid var(--gold);
-  border-radius: 5px;
-  background: var(--cream);
+  border-radius: 8px;
+  background: white;
   color: var(--ink);
-  box-shadow: 0 24px 80px #0009;
+  box-shadow: 0 24px 80px #29463835;
 }
 
-dialog::backdrop { background: #071a13dd; }
+dialog::backdrop {
+  background: #29463888;
+  backdrop-filter: blur(3px);
+}
 
 .modal { padding: clamp(22px, 5vw, 40px); }
 
@@ -278,56 +286,51 @@ dialog::backdrop { background: #071a13dd; }
 }
 
 .modal-kicker {
-  font: 10px Arial, sans-serif;
-  letter-spacing: .22em;
+  color: var(--red);
+  font: bold 10px Arial, sans-serif;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  color: #a74635;
 }
 
 .close {
   border: 0;
   background: none;
-  color: #4b493f;
+  color: var(--green-dark);
   font-size: 30px;
   cursor: pointer;
   line-height: 1;
 }
 
 .modal h2 {
-  font-size: clamp(27px, 5vw, 39px);
-  font-weight: normal;
-  line-height: 1.15;
+  color: var(--green-dark);
+  font: normal clamp(27px, 5vw, 39px)/1.15 Georgia, serif;
   margin: 16px 0 10px;
-  color: #173b2e;
 }
 
 .modal-art {
   min-height: 150px;
   margin: 22px 0;
-  background: linear-gradient(135deg, #1c5140, #a94335);
+  background: linear-gradient(135deg, #DDEDE2, #F7E9E5);
   display: grid;
   place-items: center;
-  color: var(--gold);
+  color: var(--red);
   font-size: 64px;
-  border: 1px solid #d45b43;
+  border: 1px solid #D9B65E;
+  border-radius: 5px;
 }
 
 .modal-copy {
   white-space: pre-line;
-  font-size: clamp(18px, 3vw, 22px);
-  line-height: 1.65;
-  font-style: italic;
-  text-align: center;
-  padding: 8px 5px;
+  font: 17px/1.8 Georgia, serif;
+  color: #405C4C;
 }
 
 .modal-note {
-  border-top: 1px solid #d9c9ae;
+  border-top: 1px solid #DCE9DF;
   margin-top: 25px;
   padding-top: 14px;
-  color: #a04b38;
+  color: var(--red);
   font: italic 13px Georgia, serif;
-  text-align: center;
 }
 
 @media(max-width:800px) {
@@ -361,7 +364,6 @@ dialog::backdrop { background: #071a13dd; }
 </head>
 
 <body>
-
 <header>
   <div class="head-inner">
     <a class="brand" href="#" aria-label="Schindbergbräu">
@@ -378,27 +380,20 @@ dialog::backdrop { background: #071a13dd; }
 </header>
 
 <main class="page">
-
   <section class="hero">
     <div class="kicker">Der Schindbergbräu Adventskalender · 2026</div>
-
     <h1>24 Tage. <span>24 Überraschungen.</span></h1>
-
     <p class="intro">
       Advent, Advent, das Gläschen brennt! Andere zählen die Tage bis Weihnachten,
-      wir zählen lieber die Gelegenheiten zum Anstoßen.<br><br>
-      Zwischen „Säufchen später“, „Liköritas“ und spontanen Zusammenkünften
-      wird gerührt, gebraut, probiert, geteilt und verkostet.<br><br>
-      24 Türchen lang gibt's Einblicke in den Schindbergbräu-Kosmos.<br><br>
+      wir zählen lieber die Gelegenheiten zum Anstoßen.
+      <br><br>
       Palim Palim und Prost!
     </p>
-
     <div class="rule"><b>✦</b></div>
   </section>
 
   <section id="calendar" class="calendar"
-    aria-label="Adventskalender mit 24 Türchen">
-  </section>
+    aria-label="Adventskalender mit 24 Türchen"></section>
 
   <p class="hint">
     Im Vorschau-Modus sind alle Türchen geöffnet.
@@ -409,123 +404,56 @@ dialog::backdrop { background: #071a13dd; }
     <strong>SCHINDBERGbräu</strong><br>
     Ein Advent mit Charakter. Und mit Geschmack.
   </footer>
-
 </main>
 
 <dialog id="storyDialog" aria-labelledby="storyTitle">
   <div class="modal">
-
     <div class="modal-top">
       <div class="modal-kicker" id="modalDay">
         Türchen 1 · Schindbergbräu Advent
       </div>
       <button class="close" id="closeDialog" aria-label="Schließen">×</button>
     </div>
-
     <h2 id="storyTitle"></h2>
-
-    <div class="modal-art" id="storyArt" aria-hidden="true">🍷</div>
-
+    <div class="modal-art" id="storyArt" aria-hidden="true">🍺</div>
     <div class="modal-copy" id="storyText"></div>
-
     <div class="modal-note">
       Schön, dass du dabei bist. Prost auf die Adventszeit!
     </div>
-
   </div>
 </dialog>
 
 <script>
-
-/* =====================================================
-   24 SPRÜCHE – EINER FÜR JEDES ADVENTSTÜRCHEN
-===================================================== */
-
 const stories = [
-
-  {title:"Gute Gesellschaft",icon:"🍷",
-   text:"Das Leben ist zu kurz für schlechten Wein und mittelmäßige Gesellschaft."},
-
-  {title:"Ein bisschen Unvernunft",icon:"✨",
-   text:"Die schönsten Erinnerungen entstehen oft dort, wo die Vernunft eine kleine Pause einlegt."},
-
-  {title:"Ein guter Abend",icon:"🥂",
-   text:"Ein guter Abend braucht keinen besonderen Anlass. Nur die richtigen Menschen und eine offene Flasche."},
-
-  {title:"Das Glück im Glas",icon:"🍸",
-   text:"Das Glück lässt sich nicht festhalten. Aber manchmal lässt es sich einschenken."},
-
-  {title:"Der richtige Moment",icon:"⏳",
-   text:"Die Kunst des Lebens besteht darin, die schönen Momente nicht auf später zu verschieben."},
-
-  {title:"Weniger ist mehr",icon:"🍇",
-   text:"Manchmal ist weniger mehr. Außer bei guten Freunden und gutem Wein."},
-
-  {title:"Gute Geschichten",icon:"📖",
-   text:"Die besten Geschichten beginnen selten mit: „Es war ein ganz gewöhnlicher Abend.“"},
-
-  {title:"Geschmackssache",icon:"🍷",
-   text:"Geschmack ist keine Frage des Preises, sondern der Gesellschaft, mit der man genießt."},
-
-  {title:"Eine Prise Übermut",icon:"🍾",
-   text:"Ein wenig Übermut hat noch keinem gelungenen Abend geschadet."},
-
-  {title:"Kleine Antworten",icon:"🥃",
-   text:"Das Leben verlangt nicht immer nach großen Antworten. Manchmal genügt ein guter Tropfen."},
-
-  {title:"Schöne Umwege",icon:"🌙",
-   text:"Wer jeden Schritt sorgfältig plant, verpasst womöglich die schönsten Umwege."},
-
-  {title:"Gemeinsam genießen",icon:"🕯️",
-   text:"Es gibt Momente, die sollte man nicht erklären müssen. Nur gemeinsam genießen."},
-
-  {title:"Die schönen Dinge",icon:"🍒",
-   text:"Die schönsten Dinge im Leben haben selten einen Kassenbon, aber manchmal einen Korken."},
-
-  {title:"Gute Freunde",icon:"🤝",
-   text:"Gute Gesellschaft ist wie ein guter Wein: Sie macht aus einem gewöhnlichen Abend einen besonderen."},
-
-  {title:"Vernünftige Unvernunft",icon:"😉",
-   text:"Ein bisschen Unvernunft ist manchmal die vernünftigste Entscheidung."},
-
-  {title:"Feierabend",icon:"🌿",
-   text:"Man sollte dem Alltag nicht zu viel Macht über die schönen Stunden geben."},
-
-  {title:"Die richtige Wahl",icon:"🍷",
-   text:"Manche Augenblicke sind zu kostbar, um sie bei einem Glas Wasser zu verbringen."},
-
-  {title:"Eine Frage des Stils",icon:"🎩",
-   text:"Das Leben ist kein Wunschkonzert. Aber gelegentlich darf es ruhig eine Weinprobe sein."},
-
-  {title:"Nicht zu lange warten",icon:"⭐",
-   text:"Wer immer nur auf den richtigen Moment wartet, verpasst womöglich den besten."},
-
-  {title:"Kleine Eskapaden",icon:"🥂",
-   text:"Es sind nicht die großen Ereignisse, die das Leben besonders machen, sondern die kleinen Eskapaden dazwischen."},
-
-  {title:"Stilvoll genießen",icon:"🍸",
-   text:"Stil bedeutet nicht, auf alles zu verzichten, sondern zu wissen, worauf es ankommt."},
-
-  {title:"Ein guter Tropfen",icon:"🍺",
-   text:"Ein guter Tropfen macht keinen Sommer. Aber einen Abend mitunter unvergesslich."},
-
-  {title:"Noch ein Glas?",icon:"🍷",
-   text:"Zwischen Anstand und Abenteuer liegt manchmal nur eine Einladung zum zweiten Glas."},
-
-  {title:"Auf das Leben",icon:"🎄",
-   text:"Am Ende zählen nicht die Tage, sondern die Momente, an die man sich gerne erinnert."}
-
+ {title:"Gute Gesellschaft",icon:"🍷",text:"Das Leben ist zu kurz für schlechten Wein und mittelmäßige Gesellschaft."},
+ {title:"Ein bisschen Unvernunft",icon:"✨",text:"Die schönsten Erinnerungen entstehen oft dort, wo die Vernunft eine kleine Pause einlegt."},
+ {title:"Ein guter Abend",icon:"🥂",text:"Ein guter Abend braucht keinen besonderen Anlass. Nur die richtigen Menschen und eine offene Flasche."},
+ {title:"Das Glück im Glas",icon:"🍸",text:"Das Glück lässt sich nicht festhalten. Aber manchmal lässt es sich einschenken."},
+ {title:"Der richtige Moment",icon:"⏳",text:"Die Kunst des Lebens besteht darin, die schönen Momente nicht auf später zu verschieben."},
+ {title:"Weniger ist mehr",icon:"🍇",text:"Manchmal ist weniger mehr. Außer bei guten Freunden und gutem Wein."},
+ {title:"Gute Geschichten",icon:"📖",text:"Die besten Geschichten beginnen selten mit: „Es war ein ganz gewöhnlicher Abend.“"},
+ {title:"Geschmackssache",icon:"🍷",text:"Geschmack ist keine Frage des Preises, sondern der Gesellschaft, mit der man genießt."},
+ {title:"Eine Prise Übermut",icon:"🍾",text:"Ein wenig Übermut hat noch keinem gelungenen Abend geschadet."},
+ {title:"Kleine Antworten",icon:"🥃",text:"Das Leben verlangt nicht immer nach großen Antworten. Manchmal genügt ein guter Tropfen."},
+ {title:"Schöne Umwege",icon:"🌙",text:"Wer jeden Schritt sorgfältig plant, verpasst womöglich die schönsten Umwege."},
+ {title:"Gemeinsam genießen",icon:"🕯️",text:"Es gibt Momente, die sollte man nicht erklären müssen. Nur gemeinsam genießen."},
+ {title:"Die schönen Dinge",icon:"🍒",text:"Die schönsten Dinge im Leben haben selten einen Kassenbon, aber manchmal einen Korken."},
+ {title:"Gute Freunde",icon:"🤝",text:"Gute Gesellschaft ist wie ein guter Wein: Sie macht aus einem gewöhnlichen Abend einen besonderen."},
+ {title:"Vernünftige Unvernunft",icon:"😉",text:"Ein bisschen Unvernunft ist manchmal die vernünftigste Entscheidung."},
+ {title:"Feierabend",icon:"🌿",text:"Man sollte dem Alltag nicht zu viel Macht über die schönen Stunden geben."},
+ {title:"Die richtige Wahl",icon:"🍷",text:"Manche Augenblicke sind zu kostbar, um sie bei einem Glas Wasser zu verbringen."},
+ {title:"Eine Frage des Stils",icon:"🎩",text:"Das Leben ist kein Wunschkonzert. Aber gelegentlich darf es ruhig eine Weinprobe sein."},
+ {title:"Nicht zu lange warten",icon:"⭐",text:"Wer immer nur auf den richtigen Moment wartet, verpasst womöglich den besten."},
+ {title:"Kleine Eskapaden",icon:"🥂",text:"Es sind nicht die großen Ereignisse, die das Leben besonders machen, sondern die kleinen Eskapaden dazwischen."},
+ {title:"Stilvoll genießen",icon:"🍸",text:"Stil bedeutet nicht, auf alles zu verzichten, sondern zu wissen, worauf es ankommt."},
+ {title:"Ein guter Tropfen",icon:"🍺",text:"Ein guter Tropfen macht keinen Sommer. Aber einen Abend mitunter unvergesslich."},
+ {title:"Noch ein Glas?",icon:"🍷",text:"Zwischen Anstand und Abenteuer liegt manchmal nur eine Einladung zum zweiten Glas."},
+ {title:"Auf das Leben",icon:"🎄",text:"Am Ende zählen nicht die Tage, sondern die Momente, an die man sich gerne erinnert."}
 ];
 
-
-/* =====================================================
-   VORSCHAU UND FREISCHALTUNG
-   true  = alle Türchen geöffnet
-   false = nur das jeweilige Tages-Türchen geöffnet
-===================================================== */
-
+/* Vorschau: true = alle Türchen offen.
+   Für den Live-Advent auf false setzen. */
 const PREVIEW_MODE = true;
-
 const currentDate = new Date();
 
 function isAvailable(day) {
@@ -533,18 +461,11 @@ function isAvailable(day) {
     (currentDate.getMonth() === 11 && currentDate.getDate() >= day);
 }
 
-
-/* =====================================================
-   SPEICHERN BEREITS GEÖFFNETER TÜRCHEN
-===================================================== */
-
 const storageKey = "schindbergbraeu-advent-2026-opened";
-
 let opened = [];
 
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
-
   if (Array.isArray(saved)) {
     opened = saved.filter(n =>
       Number.isInteger(n) && n >= 1 && n <= 24
@@ -552,39 +473,26 @@ try {
   }
 } catch(e) {}
 
-
-/* =====================================================
-   KALENDER ERSTELLEN
-===================================================== */
-
 const calendar = document.getElementById("calendar");
 const dialog = document.getElementById("storyDialog");
 
 function render() {
-
   calendar.replaceChildren();
 
   stories.forEach((story, index) => {
-
     const day = index + 1;
     const unlocked = isAvailable(day);
     const seen = opened.includes(day);
 
     const button = document.createElement("button");
-
     button.type = "button";
-    button.className =
-      "door" +
+    button.className = "door" +
       (!unlocked ? " locked" : "") +
       (seen ? " opened" : "");
-
     button.disabled = !unlocked;
-
     button.setAttribute(
       "aria-label",
-      `Türchen ${day}: ${
-        unlocked ? "Überraschung öffnen" : "noch verschlossen"
-      }`
+      `Türchen ${day}: ${unlocked ? "Überraschung öffnen" : "noch verschlossen"}`
     );
 
     const icon = document.createElement("span");
@@ -599,80 +507,45 @@ function render() {
 
     const label = document.createElement("span");
     label.className = "door-label";
-    label.textContent = unlocked
-      ? (seen ? "Noch einmal" : "Öffnen")
-      : "Bald";
-
+    label.textContent = unlocked ? (seen ? "Noch einmal" : "Öffnen") : "Bald";
     button.append(label);
 
     button.addEventListener("click", () => openStory(day));
-
     calendar.append(button);
-
   });
-
 }
 
-
-/* =====================================================
-   TÜRCHEN ÖFFNEN
-===================================================== */
-
 function openStory(day) {
-
   if (!isAvailable(day)) return;
 
   const story = stories[day - 1];
 
   if (!opened.includes(day)) {
-
     opened.push(day);
-
     try {
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(opened)
-      );
+      localStorage.setItem(storageKey, JSON.stringify(opened));
     } catch(e) {}
-
   }
 
   document.getElementById("modalDay").textContent =
     `Türchen ${day} · Schindbergbräu Advent`;
-
-  document.getElementById("storyTitle").textContent =
-    story.title;
-
-  document.getElementById("storyArt").textContent =
-    story.icon;
-
-  document.getElementById("storyText").textContent =
-    story.text;
+  document.getElementById("storyTitle").textContent = story.title;
+  document.getElementById("storyArt").textContent = story.icon;
+  document.getElementById("storyText").textContent = story.text;
 
   render();
-
   dialog.showModal();
-
 }
 
-
-/* =====================================================
-   FENSTER SCHLIESSEN
-===================================================== */
-
-document.getElementById("closeDialog")
-  .addEventListener("click", () => dialog.close());
+document.getElementById("closeDialog").addEventListener(
+  "click", () => dialog.close()
+);
 
 dialog.addEventListener("click", event => {
   if (event.target === dialog) dialog.close();
 });
 
-
-/* KALENDER STARTEN */
-
 render();
-
 </script>
-
 </body>
 </html>
