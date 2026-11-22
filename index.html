@@ -15,10 +15,8 @@
   --sage: #B8D5C2;
   --green: #6FAD91;
   --green-dark: #315D49;
-
   --logo-green: #17220D;
   --logo-gold: #C99A28;
-
   --red: #C94C4C;
   --red-dark: #A63B3B;
   --white: #FFFFFF;
@@ -56,8 +54,6 @@ body {
   padding: 25px 0 38px;
 }
 
-/* Dorfpanorama-Logo ohne Schriftzug */
-
 .hero-logo {
   width: min(340px, 75%);
   margin: 0 auto 18px;
@@ -69,8 +65,6 @@ body {
   height: auto;
   object-fit: contain;
 }
-
-/* Titel unter dem Logo */
 
 .hero-title {
   color: var(--logo-green);
@@ -90,8 +84,6 @@ body {
   margin-top: 5px;
 }
 
-/* Einleitung */
-
 .intro {
   max-width: 900px;
   margin: 0 auto;
@@ -109,8 +101,6 @@ body {
   letter-spacing: 0.10em;
   text-transform: uppercase;
 }
-
-/* Goldene Trennlinie */
 
 .rule {
   display: flex;
@@ -152,6 +142,7 @@ body {
   color: var(--logo-green);
   cursor: pointer;
   overflow: hidden;
+  padding: 0;
 
   display: flex;
   flex-direction: column;
@@ -169,12 +160,25 @@ body {
     border-color 0.2s;
 }
 
+/* Bild vollständig anzeigen, ohne es zuzuschneiden */
+
+.door-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  z-index: 1;
+}
+
 .door::before {
   content: "";
   position: absolute;
   inset: 7px;
   border: 1px solid #B8D5C288;
   pointer-events: none;
+  z-index: 2;
 }
 
 .door:hover:not(:disabled) {
@@ -190,24 +194,29 @@ body {
 }
 
 .number {
-  font-size: clamp(32px, 4vw, 49px);
+  position: relative;
+  z-index: 3;
+  font-size: clamp(26px, 3.5vw, 42px);
   line-height: 1;
   color: var(--logo-green);
+  text-shadow:
+    0 1px 3px #FFFFFF,
+    1px 0 3px #FFFFFF,
+    -1px 0 3px #FFFFFF,
+    0 -1px 3px #FFFFFF;
 }
 
 .door-label {
+  position: relative;
+  z-index: 3;
   margin-top: 12px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: #FFFFFFCC;
   font: 9px Arial, sans-serif;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-}
-
-.door-icon {
-  position: absolute;
-  right: 12px;
-  top: 10px;
-  font-size: 15px;
 }
 
 .door:nth-child(3n) {
@@ -224,7 +233,6 @@ body {
 }
 
 .door.opened {
-  background: linear-gradient(145deg, #F8E8E5, #F3DAD5);
   border-color: var(--red);
 }
 
@@ -391,14 +399,13 @@ dialog::backdrop {
     inset: 5px;
   }
 
+  .door-image {
+    padding: 7px;
+  }
+
   .door-label {
     font-size: 8px;
     margin-top: 9px;
-  }
-
-  .door-icon {
-    right: 8px;
-    top: 7px;
   }
 }
 
@@ -720,15 +727,27 @@ function render() {
       }`
     );
 
-    const icon = document.createElement("span");
-    icon.className = "door-icon";
-    icon.textContent = story.icon;
-    button.append(icon);
+    /* Passendes Türchenbild einfügen */
+
+    const image = document.createElement("img");
+    image.className = "door-image";
+    image.src = `bilder/Türchen${String(day).padStart(2, "0")}.png`;
+    image.alt = `Bild für Türchen ${day}`;
+    image.loading = "lazy";
+    image.onerror = () => {
+      image.style.display = "none";
+      console.warn(`Bild für Türchen ${day} wurde nicht gefunden.`);
+    };
+    button.append(image);
+
+    /* Türchennummer */
 
     const number = document.createElement("span");
     number.className = "number";
     number.textContent = day;
     button.append(number);
+
+    /* Beschriftung */
 
     const label = document.createElement("span");
     label.className = "door-label";
