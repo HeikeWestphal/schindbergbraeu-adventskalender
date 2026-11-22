@@ -16,7 +16,6 @@
   --green: #6FAD91;
   --green-dark: #315D49;
 
-  /* Logo-Farben */
   --logo-green: #17220D;
   --logo-gold: #C99A28;
 
@@ -54,54 +53,14 @@ body {
 
 .hero {
   text-align: center;
-  padding: 28px 0 38px;
+  padding: 25px 0 38px;
 }
 
-/* Gemeinsame Titelzeile */
-
-.hero-heading {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 28px;
-
-  width: 100%;
-  max-width: 1450px;
-  margin: 0 auto 35px;
-}
-
-/* DER und ADVENTSKALENDER */
-
-.hero-heading .hero-side {
-  color: var(--logo-green);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-  padding-bottom: 12px;
-  white-space: nowrap;
-}
-
-.hero-heading .hero-left {
-  text-align: right;
-  flex: 1;
-}
-
-.hero-heading .hero-right {
-  text-align: left;
-  flex: 1.5;
-}
-.hero-heading {
-  margin-bottom: 25px;
-}
-
-/* Logo */
+/* Dorfpanorama-Logo ohne Schriftzug */
 
 .hero-logo {
-  flex: 0 1 300px;
-  width: 300px;
-  min-width: 0;
+  width: min(340px, 75%);
+  margin: 0 auto 18px;
 }
 
 .hero-logo img {
@@ -109,6 +68,26 @@ body {
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+/* Titel unter dem Logo */
+
+.hero-title {
+  color: var(--logo-green);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(25px, 3vw, 38px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin: 0 auto 28px;
+}
+
+.hero-title span {
+  display: block;
+  font-size: 0.72em;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin-top: 5px;
 }
 
 /* Einleitung */
@@ -126,8 +105,8 @@ body {
   color: var(--logo-green);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
-  font-weight: bold;
-  letter-spacing: .10em;
+  font-weight: 600;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
 }
 
@@ -184,10 +163,10 @@ body {
     0 5px 14px #315D4912;
 
   transition:
-    transform .2s,
-    box-shadow .2s,
-    background .2s,
-    border-color .2s;
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .door::before {
@@ -219,7 +198,7 @@ body {
 .door-label {
   margin-top: 12px;
   font: 9px Arial, sans-serif;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -254,9 +233,9 @@ body {
 }
 
 .door.locked {
-  opacity: .55;
+  opacity: 0.55;
   cursor: not-allowed;
-  filter: grayscale(.25);
+  filter: grayscale(0.25);
 }
 
 /* =====================================
@@ -282,7 +261,7 @@ footer {
 footer strong {
   color: var(--logo-green);
   font-weight: normal;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
 }
 
 /* =====================================
@@ -318,7 +297,7 @@ dialog::backdrop {
 
 .modal-kicker {
   font: 10px Arial, sans-serif;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--red-dark);
 }
@@ -363,26 +342,11 @@ dialog::backdrop {
 
 @media (max-width: 950px) {
 
-  .hero-heading {
-    gap: 16px;
-  }
-
-  .hero-logo {
-    flex-basis: 250px;
-  }
-
-  .hero-side {
-    font-size: clamp(16px, 2vw, 23px);
-  }
-
-  .hero-right {
-    flex: 1.5;
-  }
-
   .calendar {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
   }
+
 }
 
 /* =====================================
@@ -396,37 +360,21 @@ dialog::backdrop {
   }
 
   .hero {
-    padding: 25px 0 28px;
-  }
-
-  .hero-heading {
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 28px;
-  }
-
-  .hero-side {
-    padding-bottom: 0;
-    text-align: center;
-    white-space: normal;
-  }
-
-  .hero-left {
-    order: 1;
-    font-size: 22px;
+    padding: 20px 0 28px;
   }
 
   .hero-logo {
-    order: 2;
-    width: min(260px, 75%);
-    flex: none;
+    width: min(280px, 80%);
+    margin-bottom: 16px;
   }
 
-  .hero-right {
-    order: 3;
-    font-size: clamp(17px, 5vw, 23px);
-    text-align: center;
+  .hero-title {
+    font-size: 26px;
+    margin-bottom: 23px;
+  }
+
+  .hero-title span {
+    font-size: 19px;
   }
 
   .intro {
@@ -455,6 +403,7 @@ dialog::backdrop {
     right: 8px;
     top: 7px;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -470,27 +419,20 @@ dialog::backdrop {
 
 <main class="page">
 
-  <!-- TITEL UND LOGO -->
+  <!-- KOPFBEREICH -->
 
   <section class="hero">
 
-    <div class="hero-heading">
-
-      <div class="hero-side hero-left">
-        DER
-      </div>
-
-      <div class="hero-logo">
-        <img
-          src="bilder/Schindberg-Bräu mit Dorfpanorama.png"
-          alt="Schindbergbräu Dorflogo">
-      </div>
-
-      <div class="hero-side hero-right">
-        ADVENTSKALENDER 2026
-      </div>
-
+    <div class="hero-logo">
+      <img
+        src="bilder/Dorfpanorama.png"
+        alt="Schindbergbräu Dorfpanorama">
     </div>
+
+    <h1 class="hero-title">
+      DER SCHINDBERG­BRÄU
+      <span>ADVENTSKALENDER 2026</span>
+    </h1>
 
     <p class="intro">
       Advent, Advent, das Gläschen brennt! Andere zählen die Tage
