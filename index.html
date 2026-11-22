@@ -162,7 +162,7 @@ body {
     border-color 0.2s;
 }
 
-/* Kalenderbild vollständig und ohne Beschnitt */
+/* Kalenderbild vollständig anzeigen */
 
 .door-image {
   position: absolute;
@@ -174,7 +174,7 @@ body {
   z-index: 1;
 }
 
-/* Weißer Schleier über dem Bild */
+/* Weißer Schleier über den Kalenderbildern */
 
 .door::after {
   content: "";
@@ -200,7 +200,6 @@ body {
   transform: translateY(-4px);
   border-color: var(--green);
   box-shadow: 0 9px 20px #315D4922;
-  background: linear-gradient(145deg, #FFFFFF, #CFE5D6);
 }
 
 .door:focus-visible {
@@ -291,10 +290,10 @@ footer strong {
 ===================================== */
 
 dialog {
-  width: min(680px, 92vw);
-  max-height: 90vh;
+  width: min(1180px, 94vw);
+  max-height: 94vh;
   overflow-y: auto;
-  padding: 0;
+  padding: 18px;
   border: 1px solid var(--logo-gold);
   background: #FFFFFF;
   color: var(--ink);
@@ -306,8 +305,11 @@ dialog::backdrop {
   backdrop-filter: blur(3px);
 }
 
+/* Durchgehende grüne Innenfläche */
+
 .modal {
   padding: clamp(22px, 5vw, 40px);
+  background: linear-gradient(145deg, #EAF3EC, #D7E9DD);
 }
 
 .modal-top {
@@ -331,6 +333,7 @@ dialog::backdrop {
   font-size: 32px;
   cursor: pointer;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .modal h2 {
@@ -338,25 +341,24 @@ dialog::backdrop {
   font-size: clamp(27px, 5vw, 39px);
   font-weight: normal;
   line-height: 1.2;
-  margin: 18px 0 12px;
+  margin: 22px 0;
 }
 
-/* Popup-Bild */
+/* Popup-Bild ohne zusätzliche Hintergrundfläche */
 
 .modal-art {
-  min-height: 125px;
   margin: 22px 0;
-  padding: 15px;
-  background: linear-gradient(135deg, var(--sage-light), var(--mint));
+  padding: 0;
+  background: transparent;
   display: grid;
   place-items: center;
-  border: 1px solid var(--sage);
+  border: none;
 }
 
 .popup-image {
   display: block;
   width: 100%;
-  max-height: 360px;
+  max-height: 55vh;
   object-fit: contain;
 }
 
@@ -364,6 +366,8 @@ dialog::backdrop {
   white-space: pre-line;
   font-size: 17px;
   line-height: 1.8;
+  color: var(--green-dark);
+  margin-top: 24px;
 }
 
 /* =====================================
@@ -430,12 +434,25 @@ dialog::backdrop {
     margin-top: 9px;
   }
 
-  .modal-art {
-    padding: 10px;
+  dialog {
+    width: 96vw;
+    padding: 9px;
+  }
+
+  .modal {
+    padding: 20px;
+  }
+
+  .modal h2 {
+    font-size: 27px;
   }
 
   .popup-image {
-    max-height: 55vh;
+    max-height: 48vh;
+  }
+
+  .modal-copy {
+    font-size: 16px;
   }
 }
 
