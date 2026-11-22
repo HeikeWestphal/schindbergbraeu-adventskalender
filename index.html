@@ -75,12 +75,15 @@ body {
 .hero-side {
   color: var(--logo-green);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 28px;
-  font-weight: bold;
-  letter-spacing: .07em;
-  line-height: 1.2;
-  padding-bottom: 15px;
+  font-size: clamp(23px, 2vw, 29px);
+  font-weight: 600;
+  letter-spacing: .035em;
+  line-height: 1;
+  padding-bottom: 12px;
   white-space: nowrap;
+
+  transform: scaleY(1.12);
+  transform-origin: center bottom;
 }
 
 .hero-left {
