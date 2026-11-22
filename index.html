@@ -102,6 +102,8 @@ body {
   text-transform: uppercase;
 }
 
+/* Goldene Trennlinie */
+
 .rule {
   display: flex;
   align-items: center;
@@ -160,7 +162,7 @@ body {
     border-color 0.2s;
 }
 
-/* Bild vollständig anzeigen, ohne es zuzuschneiden */
+/* Kalenderbild vollständig und ohne Beschnitt */
 
 .door-image {
   position: absolute;
@@ -172,13 +174,26 @@ body {
   z-index: 1;
 }
 
+/* Weißer Schleier über dem Bild */
+
+.door::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.38);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Dekorativer Innenrahmen */
+
 .door::before {
   content: "";
   position: absolute;
   inset: 7px;
   border: 1px solid #B8D5C288;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
 }
 
 .door:hover:not(:disabled) {
@@ -195,7 +210,7 @@ body {
 
 .number {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   font-size: clamp(26px, 3.5vw, 42px);
   line-height: 1;
   color: var(--logo-green);
@@ -208,7 +223,7 @@ body {
 
 .door-label {
   position: relative;
-  z-index: 3;
+  z-index: 4;
   margin-top: 12px;
   padding: 2px 7px;
   border-radius: 3px;
@@ -228,7 +243,6 @@ body {
 }
 
 .door:nth-child(5n) {
-  background: linear-gradient(145deg, #FFFDF5, #F4EBD5);
   border-color: #E5D39E;
 }
 
@@ -327,15 +341,23 @@ dialog::backdrop {
   margin: 18px 0 12px;
 }
 
+/* Popup-Bild */
+
 .modal-art {
   min-height: 125px;
   margin: 22px 0;
+  padding: 15px;
   background: linear-gradient(135deg, var(--sage-light), var(--mint));
   display: grid;
   place-items: center;
-  color: var(--logo-green);
-  font-size: 60px;
   border: 1px solid var(--sage);
+}
+
+.popup-image {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  object-fit: contain;
 }
 
 .modal-copy {
@@ -407,6 +429,14 @@ dialog::backdrop {
     font-size: 8px;
     margin-top: 9px;
   }
+
+  .modal-art {
+    padding: 10px;
+  }
+
+  .popup-image {
+    max-height: 55vh;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -414,6 +444,7 @@ dialog::backdrop {
     transition: none;
   }
 }
+
 </style>
 </head>
 
@@ -464,7 +495,7 @@ dialog::backdrop {
 
 </main>
 
-<!-- POPUP FÜR DIE SPRÜCHE -->
+<!-- POPUP FÜR DIE SPRÜCHE UND BILDER -->
 
 <dialog id="storyDialog" aria-labelledby="storyTitle">
 
@@ -485,7 +516,13 @@ dialog::backdrop {
 
     <h2 id="storyTitle"></h2>
 
-    <div class="modal-art" id="storyArt" aria-hidden="true">🥂</div>
+    <div class="modal-art">
+      <img
+        id="storyImage"
+        src=""
+        alt=""
+        class="popup-image">
+    </div>
 
     <div class="modal-copy" id="storyText"></div>
 
@@ -693,6 +730,15 @@ try {
 
 
 /* ==========================================
+   BILDPFAD ERZEUGEN
+========================================== */
+
+function getImagePath(day) {
+  return `bilder/Türchen${String(day).padStart(2, "0")}.png`;
+}
+
+
+/* ==========================================
    KALENDER ERZEUGEN
 ========================================== */
 
@@ -727,29 +773,35 @@ function render() {
       }`
     );
 
-    /* Passendes Türchenbild einfügen */
+    /* Türchenbild */
 
     const image = document.createElement("img");
+
     image.className = "door-image";
-    image.src = `bilder/Türchen${String(day).padStart(2, "0")}.png`;
+    image.src = getImagePath(day);
     image.alt = `Bild für Türchen ${day}`;
     image.loading = "lazy";
+
     image.onerror = () => {
       image.style.display = "none";
       console.warn(`Bild für Türchen ${day} wurde nicht gefunden.`);
     };
+
     button.append(image);
 
     /* Türchennummer */
 
     const number = document.createElement("span");
+
     number.className = "number";
     number.textContent = day;
+
     button.append(number);
 
     /* Beschriftung */
 
     const label = document.createElement("span");
+
     label.className = "door-label";
 
     label.textContent = unlocked
@@ -796,11 +848,24 @@ function openStory(day) {
   document.getElementById("storyTitle").textContent =
     story.title;
 
-  document.getElementById("storyArt").textContent =
-    story.icon;
-
   document.getElementById("storyText").textContent =
     story.text;
+
+  /* Passendes Bild im Popup anzeigen */
+
+  const popupImage = document.getElementById("storyImage");
+
+  popupImage.style.display = "block";
+  popupImage.src = getImagePath(day);
+  popupImage.alt = `Bild zu Türchen ${day}`;
+
+  popupImage.onerror = () => {
+    popupImage.style.display = "none";
+  };
+
+  popupImage.onload = () => {
+    popupImage.style.display = "block";
+  };
 
   render();
 
