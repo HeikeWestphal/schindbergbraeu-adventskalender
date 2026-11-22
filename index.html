@@ -172,13 +172,24 @@ body {
   z-index: 1;
 }
 
-/* Weißer Schleier über den Kalenderbildern */
+/* Weißer Schleier bei noch ungeöffneten Türchen */
 
-.door::after {
+.door:not(.opened)::after {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(255, 255, 255, 0.38);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Bei geöffneten Türchen verschwindet der Schleier */
+
+.door.opened::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
   z-index: 2;
   pointer-events: none;
 }
