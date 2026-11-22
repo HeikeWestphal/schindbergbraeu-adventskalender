@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#F1F6F1">
 
-<title>Schindbergbräu · Adventskalender 2026</title>
+<title>Der Schindbergbräu Adventskalender · 2026</title>
 
 <style>
 :root {
@@ -16,7 +16,7 @@
   --green: #6FAD91;
   --green-dark: #315D49;
 
-  /* Farben passend zum Logo */
+  /* Logo-Farben */
   --logo-green: #17220D;
   --logo-gold: #C99A28;
 
@@ -49,7 +49,7 @@ body {
 }
 
 /* =====================================
-   KOPFBEREICH UND LOGO
+   KOPFBEREICH
 ===================================== */
 
 .hero {
@@ -57,77 +57,61 @@ body {
   padding: 28px 0 38px;
 }
 
-/* =====================================
-   KOMPAKTE TITELZEILE
-===================================== */
+/* Gemeinsame Titelzeile */
 
 .hero-heading {
-  display: grid;
-  grid-template-columns: 1fr 260px 1.5fr;
-  align-items: center;
-  gap: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 28px;
 
   width: 100%;
   max-width: 1450px;
   margin: 0 auto 35px;
 }
 
-.hero-der,
-.hero-calendar {
-  align-self: end;
+/* DER und ADVENTSKALENDER */
+
+.hero-side {
+  color: var(--logo-green);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(19px, 2vw, 29px);
+  font-weight: 500;
+  letter-spacing: .10em;
+  line-height: 1.2;
   padding-bottom: 12px;
+  white-space: nowrap;
 }
 
-.hero-der {
+.hero-left {
   text-align: right;
+  flex: 1;
 }
 
-.hero-calendar {
+.hero-right {
   text-align: left;
+  flex: 1.5;
 }
+
+/* Logo */
 
 .hero-logo {
-  width: 100%;
-  max-width: 260px;
-  margin: auto;
+  flex: 0 1 300px;
+  width: 300px;
+  min-width: 0;
 }
 
 .hero-logo img {
   display: block;
   width: 100%;
   height: auto;
+  object-fit: contain;
 }
 
-/* Smartphone und kleinere Bildschirme */
-
-@media (max-width: 760px) {
-
-  .hero-heading {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 28px;
-  }
-
-  .hero-der {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .hero-logo {
-    width: min(250px, 70%);
-  }
-
-  .hero-calendar {
-    font-size: clamp(17px, 5vw, 23px);
-    text-align: center;
-    white-space: normal;
-  }
-
-}
+/* Einleitung */
 
 .intro {
-  max-width: 700px;
+  max-width: 900px;
   margin: 0 auto;
   color: var(--logo-green);
   font-size: 17px;
@@ -143,6 +127,8 @@ body {
   letter-spacing: .10em;
   text-transform: uppercase;
 }
+
+/* Goldene Trennlinie */
 
 .rule {
   display: flex;
@@ -372,22 +358,27 @@ dialog::backdrop {
    TABLET
 ===================================== */
 
-@media(max-width: 850px) {
-  .calendar {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 10px;
-  }
+@media (max-width: 950px) {
 
   .hero-heading {
-    gap: 12px;
+    gap: 16px;
   }
 
   .hero-logo {
-    flex-basis: 240px;
+    flex-basis: 250px;
   }
 
-  .hero-calendar {
-    font-size: clamp(16px, 2.5vw, 23px);
+  .hero-side {
+    font-size: clamp(16px, 2vw, 23px);
+  }
+
+  .hero-right {
+    flex: 1.5;
+  }
+
+  .calendar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
   }
 }
 
@@ -395,7 +386,8 @@ dialog::backdrop {
    SMARTPHONE
 ===================================== */
 
-@media(max-width: 650px) {
+@media (max-width: 760px) {
+
   .page {
     padding: 15px 14px 40px;
   }
@@ -406,21 +398,31 @@ dialog::backdrop {
 
   .hero-heading {
     flex-direction: column;
-    gap: 5px;
-    margin-bottom: 25px;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 28px;
   }
 
-  .hero-der {
-    font-size: 25px;
+  .hero-side {
+    padding-bottom: 0;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .hero-left {
+    order: 1;
+    font-size: 22px;
   }
 
   .hero-logo {
-    width: min(280px, 75%);
-    flex: 0 1 auto;
+    order: 2;
+    width: min(260px, 75%);
+    flex: none;
   }
 
-  .hero-calendar {
-    font-size: 22px;
+  .hero-right {
+    order: 3;
+    font-size: clamp(17px, 5vw, 23px);
     text-align: center;
   }
 
@@ -452,11 +454,12 @@ dialog::backdrop {
   }
 }
 
-@media(prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .door {
     transition: none;
   }
 }
+
 </style>
 </head>
 
@@ -470,7 +473,9 @@ dialog::backdrop {
 
     <div class="hero-heading">
 
-      <span class="hero-der">Der</span>
+      <div class="hero-side hero-left">
+        DER
+      </div>
 
       <div class="hero-logo">
         <img
@@ -478,9 +483,9 @@ dialog::backdrop {
           alt="Schindbergbräu Dorflogo">
       </div>
 
-      <span class="hero-calendar">
-        Adventskalender · 2026
-      </span>
+      <div class="hero-side hero-right">
+        ADVENTSKALENDER · 2026
+      </div>
 
     </div>
 
@@ -489,7 +494,7 @@ dialog::backdrop {
       bis Weihnachten, wir zählen lieber die Gelegenheiten zum Anstoßen.
     </p>
 
-    <p class="prost">Palim Palim und Prost!</p>
+    <p class="prost">PALIM PALIM UND PROST!</p>
 
     <div class="rule"><b>✦</b></div>
 
@@ -515,7 +520,7 @@ dialog::backdrop {
 
 </main>
 
-<!-- POPUP -->
+<!-- POPUP FÜR DIE SPRÜCHE -->
 
 <dialog id="storyDialog" aria-labelledby="storyTitle">
 
