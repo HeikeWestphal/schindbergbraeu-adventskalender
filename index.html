@@ -160,7 +160,7 @@ body {
     border-color 0.2s;
 }
 
-/* Bild in geöffneten Türchen */
+/* Kalenderbilder vollständig anzeigen */
 
 .door-image {
   position: absolute;
@@ -178,27 +178,21 @@ body {
   display: none;
 }
 
-/* Geöffnete Türchen zeigen das Bild vollständig */
+/* Geöffnete Türchen zeigen ihr Bild */
 
 .door.opened .door-image {
   display: block;
 }
 
-/* Kein Schleier über geöffneten Bildern */
+/* Kräftiger weißer Schleier bei geöffneten Türchen */
 
 .door.opened::after {
-  content: none;
-}
-
-.door:hover:not(:disabled) {
-  transform: translateY(-4px);
-  border-color: var(--green);
-  box-shadow: 0 9px 20px #315D4922;
-}
-
-.door:focus-visible {
-  outline: 3px solid var(--logo-gold);
-  outline-offset: 3px;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.68);
+  z-index: 2;
+  pointer-events: none;
 }
 
 /* Dekorativer Innenrahmen */
@@ -210,6 +204,17 @@ body {
   border: 1px solid #B8D5C288;
   pointer-events: none;
   z-index: 3;
+}
+
+.door:hover:not(:disabled) {
+  transform: translateY(-4px);
+  border-color: var(--green);
+  box-shadow: 0 9px 20px #315D4922;
+}
+
+.door:focus-visible {
+  outline: 3px solid var(--logo-gold);
+  outline-offset: 3px;
 }
 
 .number {
@@ -381,7 +386,7 @@ dialog::backdrop {
   margin: 0 0 14px;
 }
 
-/* Bild */
+/* Popup-Bild */
 
 .modal-art {
   flex: 1 1 auto;
@@ -597,8 +602,6 @@ dialog::backdrop {
 
   <div class="modal-outer">
 
-    <!-- Weißer Außenbereich -->
-
     <div class="modal-top">
 
       <div class="modal-kicker" id="modalDay">
@@ -611,8 +614,6 @@ dialog::backdrop {
         aria-label="Schließen">×</button>
 
     </div>
-
-    <!-- Grüne Innenfläche -->
 
     <div class="modal">
 
@@ -886,7 +887,7 @@ function render() {
     image.alt = seen ? `Bild für Türchen ${day}` : "";
     image.loading = "lazy";
 
-    /* Bild nur bei bereits geöffneten Türchen zeigen */
+    /* Bild nur bei geöffneten Türchen anzeigen */
 
     image.style.display = seen ? "block" : "none";
 
@@ -959,7 +960,7 @@ function openStory(day) {
   document.getElementById("storyText").textContent =
     story.text;
 
-  /* Passendes Bild im Popup anzeigen */
+  /* Popup-Bild ohne Schleier anzeigen */
 
   const popupImage = document.getElementById("storyImage");
 
@@ -975,7 +976,7 @@ function openStory(day) {
     popupImage.style.display = "block";
   };
 
-  /* Kalender aktualisieren: Bild jetzt sichtbar */
+  /* Kalender aktualisieren */
 
   render();
 
