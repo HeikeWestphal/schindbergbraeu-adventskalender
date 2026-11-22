@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -15,10 +14,8 @@
   --sage: #B8D5C2;
   --green: #6FAD91;
   --green-dark: #315D49;
-
   --logo-green: #17220D;
   --logo-gold: #C99A28;
-
   --red: #C94C4C;
   --red-dark: #A63B3B;
   --white: #FFFFFF;
@@ -47,20 +44,48 @@ body {
   padding: 25px 24px 60px;
 }
 
-/* =====================================
-   KOPFBEREICH
-===================================== */
+/* KOPFBEREICH */
 
 .hero {
   text-align: center;
-  padding: 25px 0 38px;
+  padding: 28px 0 38px;
 }
 
-/* Dorfpanorama-Logo ohne Schriftzug */
+.hero-heading {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 28px;
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto 35px;
+}
+
+.hero-heading .hero-side {
+  color: var(--logo-green);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  padding-bottom: 12px;
+  white-space: nowrap;
+}
+
+.hero-heading .hero-left {
+  text-align: right;
+  flex: 1;
+}
+
+.hero-heading .hero-right {
+  text-align: left;
+  flex: 1.5;
+}
 
 .hero-logo {
-  width: min(340px, 75%);
-  margin: 0 auto 18px;
+  flex: 0 1 300px;
+  width: 300px;
+  min-width: 0;
 }
 
 .hero-logo img {
@@ -69,28 +94,6 @@ body {
   height: auto;
   object-fit: contain;
 }
-
-/* Titel unter dem Logo */
-
-.hero-title {
-  color: var(--logo-green);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: clamp(25px, 3vw, 38px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-  margin: 0 auto 28px;
-}
-
-.hero-title span {
-  display: block;
-  font-size: 0.72em;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  margin-top: 5px;
-}
-
-/* Einleitung */
 
 .intro {
   max-width: 900px;
@@ -105,12 +108,12 @@ body {
   color: var(--logo-green);
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
-  font-weight: 600;
-  letter-spacing: 0.10em;
+  font-weight: bold;
+  letter-spacing: .10em;
   text-transform: uppercase;
 }
 
-/* Goldene Trennlinie */
+/* GOLDENE TRENNLINIE */
 
 .rule {
   display: flex;
@@ -134,9 +137,7 @@ body {
   font-weight: normal;
 }
 
-/* =====================================
-   ADVENTSTÜRCHEN
-===================================== */
+/* ADVENTSTÜRCHEN */
 
 .calendar {
   display: grid;
@@ -163,10 +164,10 @@ body {
     0 5px 14px #315D4912;
 
   transition:
-    transform 0.2s,
-    box-shadow 0.2s,
-    background 0.2s,
-    border-color 0.2s;
+    transform .2s,
+    box-shadow .2s,
+    background .2s,
+    border-color .2s;
 }
 
 .door::before {
@@ -198,7 +199,7 @@ body {
 .door-label {
   margin-top: 12px;
   font: 9px Arial, sans-serif;
-  letter-spacing: 0.2em;
+  letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -233,14 +234,12 @@ body {
 }
 
 .door.locked {
-  opacity: 0.55;
+  opacity: .55;
   cursor: not-allowed;
-  filter: grayscale(0.25);
+  filter: grayscale(.25);
 }
 
-/* =====================================
-   HINWEIS UND FUSSZEILE
-===================================== */
+/* HINWEIS UND FUSSZEILE */
 
 .hint {
   text-align: center;
@@ -261,12 +260,10 @@ footer {
 footer strong {
   color: var(--logo-green);
   font-weight: normal;
-  letter-spacing: 0.1em;
+  letter-spacing: .1em;
 }
 
-/* =====================================
-   POPUP
-===================================== */
+/* POPUP */
 
 dialog {
   width: min(680px, 92vw);
@@ -297,7 +294,7 @@ dialog::backdrop {
 
 .modal-kicker {
   font: 10px Arial, sans-serif;
-  letter-spacing: 0.2em;
+  letter-spacing: .2em;
   text-transform: uppercase;
   color: var(--red-dark);
 }
@@ -336,45 +333,70 @@ dialog::backdrop {
   line-height: 1.8;
 }
 
-/* =====================================
-   TABLET
-===================================== */
+/* TABLET */
 
 @media (max-width: 950px) {
+  .hero-heading {
+    gap: 16px;
+  }
+
+  .hero-logo {
+    flex-basis: 250px;
+  }
+
+  .hero-side {
+    font-size: clamp(16px, 2vw, 23px);
+  }
+
+  .hero-right {
+    flex: 1.5;
+  }
 
   .calendar {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
   }
-
 }
 
-/* =====================================
-   SMARTPHONE
-===================================== */
+/* SMARTPHONE */
 
 @media (max-width: 760px) {
-
   .page {
     padding: 15px 14px 40px;
   }
 
   .hero {
-    padding: 20px 0 28px;
+    padding: 25px 0 28px;
+  }
+
+  .hero-heading {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .hero-side {
+    padding-bottom: 0;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .hero-left {
+    order: 1;
+    font-size: 22px;
   }
 
   .hero-logo {
-    width: min(280px, 80%);
-    margin-bottom: 16px;
+    order: 2;
+    width: min(260px, 75%);
+    flex: none;
   }
 
-  .hero-title {
-    font-size: 26px;
-    margin-bottom: 23px;
-  }
-
-  .hero-title span {
-    font-size: 19px;
+  .hero-right {
+    order: 3;
+    font-size: clamp(17px, 5vw, 23px);
+    text-align: center;
   }
 
   .intro {
@@ -403,7 +425,6 @@ dialog::backdrop {
     right: 8px;
     top: 7px;
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -419,17 +440,27 @@ dialog::backdrop {
 
 <main class="page">
 
-  <!-- KOPFBEREICH -->
+  <!-- TITEL UND LOGO -->
 
   <section class="hero">
 
-    <div class="hero-logo">
-      <img src="bilder/Dorfpanorama.png" alt="Schindbergbräu Dorfpanorama">
-    </div>
+    <div class="hero-heading">
 
-    <h1 class="hero-title">
-      DER SCHINDBERG­BRÄU ADVENTSKALENDER 2026
-    </h1>
+      <div class="hero-side hero-left">
+        DER
+      </div>
+
+      <div class="hero-logo">
+        <img
+          src="bilder/Schindberg-Bräu mit Dorfpanorama.png"
+          alt="Schindbergbräu Dorflogo">
+      </div>
+
+      <div class="hero-side hero-right">
+        ADVENTSKALENDER 2026
+      </div>
+
+    </div>
 
     <p class="intro">
       Advent, Advent, das Gläschen brennt! Andere zählen die Tage
@@ -457,7 +488,7 @@ dialog::backdrop {
 
   <footer>
     <strong>SCHINDBERGbräu</strong><br>
-    Ein Advent mit Charakter und Geschmack.
+    Ein Advent mit Charakter. Und mit Geschmack.
   </footer>
 
 </main>
@@ -494,153 +525,153 @@ dialog::backdrop {
 <script>
 
 /* ==========================================
-   DIE 24 ADVENTSSPRÜCHE
+   DIE 24 NEUEN ADVENTSSPRÜCHE
 ========================================== */
 
 const stories = [
 
   {
-    title: "Ein Prost auf den Advent",
-    icon: "🥂",
-    text: "Advent ist, wenn man trotz aller Besinnlichkeit schon wieder einen guten Grund zum Anstoßen findet.\n\nUnd falls nicht: Wir hätten da 24 Türchen voller Möglichkeiten."
-  },
-
-  {
-    title: "Die Sache mit der Besinnlichkeit",
-    icon: "🕯️",
-    text: "Besinnlichkeit bedeutet, sich auf das Wesentliche zu konzentrieren.\n\nZum Beispiel darauf, dass das Glas niemals lange leer bleibt."
-  },
-
-  {
-    title: "Gute Vorsätze",
-    icon: "🎄",
-    text: "Ich wollte dieses Jahr weniger trinken.\n\nDann fiel mir ein, dass ich mir diesen Vorsatz schon letztes Jahr nicht zugetraut habe."
-  },
-
-  {
-    title: "Qualitätskontrolle",
-    icon: "🍷",
-    text: "Wer regelmäßig probiert, entwickelt irgendwann ein geschultes Geschmacksempfinden.\n\nWir nennen das nicht Trinken. Wir nennen das angewandte Qualitätskontrolle."
-  },
-
-  {
-    title: "Weihnachtsstress",
-    icon: "🎁",
-    text: "Geschenke besorgen, Plätzchen backen, Wohnung schmücken, Erwartungen erfüllen.\n\nManchmal braucht man einfach einen Moment, in dem nur das Glas etwas von einem erwartet."
-  },
-
-  {
-    title: "Die perfekte Temperatur",
-    icon: "❄️",
-    text: "Es gibt kein schlechtes Wetter. Es gibt nur die falsche Kleidung und das falsche Getränk.\n\nWir wären dann bereit für die zweite Hälfte der Lösung."
-  },
-
-  {
-    title: "Freundschaft",
-    icon: "❤️",
-    text: "Gute Freunde erkennt man daran, dass sie nicht fragen, warum man schon wieder anstößt.\n\nSie halten einfach ihr Glas hin."
-  },
-
-  {
-    title: "Die Kunst des Genießens",
-    icon: "🍸",
-    text: "Man muss nicht immer alles sofort erledigen.\n\nManchmal darf man auch einfach sitzen bleiben, genießen und so tun, als wäre das gerade der wichtigste Termin des Tages."
-  },
-
-  {
-    title: "Adventskalenderweisheit",
-    icon: "⭐",
-    text: "Andere öffnen Türchen, um Schokolade zu finden.\n\nWir öffnen Türchen, um festzustellen, dass das Leben doch noch Überraschungen bereithält."
-  },
-
-  {
-    title: "Ein Hoch auf die Geduld",
-    icon: "🍾",
-    text: "Gute Dinge brauchen Zeit.\n\nEin guter Likör sowieso. Und manche Menschen sollten vielleicht auch erst nach dem zweiten Glas beurteilt werden."
-  },
-
-  {
-    title: "Die Wahrheit im Glas",
-    icon: "🥃",
-    text: "Man sagt, im Wein liege die Wahrheit.\n\nWir haben festgestellt: Im Likör liegt manchmal auch eine ziemlich gute Geschichte."
-  },
-
-  {
-    title: "Winterliche Wärme",
-    icon: "🔥",
-    text: "Draußen ist es kalt, drinnen ist es gemütlich.\n\nUnd irgendwo dazwischen liegt die perfekte Temperatur für einen kleinen Schluck Seelenwärmer."
-  },
-
-  {
-    title: "Halbzeit",
-    icon: "🎅",
-    text: "Die Hälfte des Advents ist geschafft.\n\nDie Geschenke sind noch nicht alle besorgt, die Plätzchen vielleicht schon aufgegessen – aber wir sind noch lange nicht fertig."
-  },
-
-  {
     title: "Das Leben ist zu kurz",
+    icon: "🍷",
+    text: "Das Leben ist zu kurz für schlechten Wein und mittelmäßige Gesellschaft."
+  },
+
+  {
+    title: "Die schönsten Erinnerungen",
     icon: "✨",
-    text: "Das Leben ist zu kurz für schlechten Wein und mittelmäßige Gesellschaft.\n\nAlso umgib dich mit Menschen, die dein Glas und dein Herz füllen."
+    text: "Die schönsten Erinnerungen entstehen oft dort, wo die Vernunft eine kleine Pause einlegt."
   },
 
   {
-    title: "Kleine Auszeit",
+    title: "Ein guter Abend",
+    icon: "🥂",
+    text: "Ein guter Abend braucht keinen besonderen Anlass. Nur die richtigen Menschen und eine offene Flasche."
+  },
+
+  {
+    title: "Das Glück einschenken",
+    icon: "🍀",
+    text: "Das Glück lässt sich nicht festhalten. Aber manchmal lässt es sich einschenken."
+  },
+
+  {
+    title: "Schöne Momente",
     icon: "🌟",
-    text: "Manchmal braucht es keine große Reise, kein Wellnesshotel und keinen freien Tag.\n\nManchmal reicht ein gemütlicher Abend, ein gutes Getränk und die richtigen Menschen."
+    text: "Die Kunst des Lebens besteht darin, die schönen Momente nicht auf später zu verschieben."
   },
 
   {
-    title: "Die große Frage",
-    icon: "❓",
-    text: "Ist das Glas halb voll oder halb leer?\n\nWir finden: Das ist keine philosophische Frage. Das ist eine klare Aufforderung zum Nachschenken."
+    title: "Weniger ist mehr",
+    icon: "🍇",
+    text: "Manchmal ist weniger mehr. Außer bei guten Freunden und gutem Wein."
   },
 
   {
-    title: "Geselligkeit",
+    title: "Die besten Geschichten",
+    icon: "🎉",
+    text: "Die besten Geschichten beginnen selten mit: „Es war ein ganz gewöhnlicher Abend.“"
+  },
+
+  {
+    title: "Geschmackssache",
+    icon: "🍷",
+    text: "Geschmack ist keine Frage des Preises, sondern der Gesellschaft, mit der man genießt."
+  },
+
+  {
+    title: "Ein wenig Übermut",
+    icon: "😉",
+    text: "Ein wenig Übermut hat noch keinem gelungenen Abend geschadet."
+  },
+
+  {
+    title: "Ein guter Tropfen",
+    icon: "🥃",
+    text: "Das Leben verlangt nicht immer nach großen Antworten. Manchmal genügt ein guter Tropfen."
+  },
+
+  {
+    title: "Schöne Umwege",
+    icon: "🛤️",
+    text: "Wer jeden Schritt sorgfältig plant, verpasst womöglich die schönsten Umwege."
+  },
+
+  {
+    title: "Gemeinsam genießen",
+    icon: "❤️",
+    text: "Es gibt Momente, die sollte man nicht erklären müssen. Nur gemeinsam genießen."
+  },
+
+  {
+    title: "Ohne Kassenbon",
+    icon: "🍾",
+    text: "Die schönsten Dinge im Leben haben selten einen Kassenbon, aber manchmal einen Korken."
+  },
+
+  {
+    title: "Gute Gesellschaft",
     icon: "🤝",
-    text: "Zusammen lachen, erzählen, genießen und die Zeit vergessen.\n\nWenn das kein guter Grund ist, den Alltag kurz vor der Tür stehen zu lassen."
+    text: "Gute Gesellschaft ist wie ein guter Wein: Sie macht aus einem gewöhnlichen Abend einen besonderen."
   },
 
   {
-    title: "Weihnachtswunder",
-    icon: "🦌",
-    text: "Weihnachtswunder passieren nicht immer unter dem Tannenbaum.\n\nManchmal stehen sie in kleinen Flaschen und tragen ein selbstgemachtes Etikett."
+    title: "Die vernünftige Unvernunft",
+    icon: "🥂",
+    text: "Ein bisschen Unvernunft ist manchmal die vernünftigste Entscheidung."
   },
 
   {
-    title: "Vorsicht, Genuss!",
-    icon: "🍹",
-    text: "Selbstgemacht schmeckt einfach besser.\n\nVielleicht, weil so viel Liebe drinsteckt. Vielleicht aber auch, weil man beim Herstellen schon ein bisschen probiert hat."
+    title: "Schöne Stunden",
+    icon: "🕯️",
+    text: "Man sollte dem Alltag nicht zu viel Macht über die schönen Stunden geben."
   },
 
   {
-    title: "Die letzten Meter",
+    title: "Kostbare Augenblicke",
+    icon: "🍷",
+    text: "Manche Augenblicke sind zu kostbar, um sie bei einem Glas Wasser zu verbringen."
+  },
+
+  {
+    title: "Weinprobe statt Wunschkonzert",
+    icon: "🎶",
+    text: "Das Leben ist kein Wunschkonzert. Aber gelegentlich darf es ruhig eine Weinprobe sein."
+  },
+
+  {
+    title: "Der richtige Moment",
+    icon: "⏳",
+    text: "Wer immer nur auf den richtigen Moment wartet, verpasst womöglich den besten."
+  },
+
+  {
+    title: "Kleine Eskapaden",
     icon: "🎄",
-    text: "Der Advent biegt auf die Zielgerade ein.\n\nDie To-do-Liste ist lang, die Nerven sind kurz. Zeit für einen tiefen Atemzug und einen kleinen Schluck Gelassenheit."
+    text: "Es sind nicht die großen Ereignisse, die das Leben besonders machen, sondern die kleinen Eskapaden dazwischen."
   },
 
   {
-    title: "Vorfreude",
-    icon: "🎀",
-    text: "Vorfreude ist bekanntlich die schönste Freude.\n\nAußer vielleicht die Freude, wenn man endlich weiß, was in der Flasche steckt."
+    title: "Stil und Geschmack",
+    icon: "✨",
+    text: "Stil bedeutet nicht, auf alles zu verzichten, sondern zu wissen, worauf es ankommt."
   },
 
   {
-    title: "Gemeinsam statt einsam",
-    icon: "🥰",
-    text: "Ein gutes Getränk schmeckt allein schon ganz ordentlich.\n\nIn netter Gesellschaft wird daraus aber schnell ein richtig schöner Abend."
+    title: "Ein unvergesslicher Abend",
+    icon: "🍇",
+    text: "Ein guter Tropfen macht keinen Sommer. Aber einen Abend mitunter unvergesslich."
   },
 
   {
-    title: "Fast Weihnachten",
-    icon: "🔔",
-    text: "Die letzten Vorbereitungen laufen, die Küche duftet, die Lichter leuchten.\n\nUnd irgendwo wartet bestimmt noch ein Gläschen darauf, nicht vergessen zu werden."
+    title: "Anstand und Abenteuer",
+    icon: "😉",
+    text: "Zwischen Anstand und Abenteuer liegt manchmal nur eine Einladung zum zweiten Glas."
   },
 
   {
-    title: "Frohe Weihnachten!",
+    title: "Die Momente zählen",
     icon: "🎅",
-    text: "Das letzte Türchen ist geöffnet.\n\nWir wünschen euch frohe Weihnachten, entspannte Stunden, liebe Menschen um euch herum und immer einen guten Grund zum Anstoßen.\n\nPalim Palim und Prost! 🍻"
+    text: "Am Ende zählen nicht die Tage, sondern die Momente, an die man sich gerne erinnert."
   }
 
 ];
