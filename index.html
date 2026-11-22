@@ -102,8 +102,6 @@ body {
   text-transform: uppercase;
 }
 
-/* Goldene Trennlinie */
-
 .rule {
   display: flex;
   align-items: center;
@@ -162,7 +160,7 @@ body {
     border-color 0.2s;
 }
 
-/* Kalenderbild vollständig anzeigen */
+/* Kalenderbilder vollständig anzeigen */
 
 .door-image {
   position: absolute;
@@ -286,17 +284,23 @@ footer strong {
 }
 
 /* =====================================
-   POPUP
+   POPUP - QUADRATISCHER AUFBAU
 ===================================== */
 
 dialog {
-  width: min(1180px, 94vw);
+  width: min(88vw, 88vh, 820px);
+  height: min(88vw, 88vh, 820px);
+  max-width: 94vw;
   max-height: 94vh;
-  overflow-y: auto;
-  padding: 18px;
+
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+
+  padding: 14px;
   border: 1px solid var(--logo-gold);
   background: #FFFFFF;
   color: var(--ink);
+
   box-shadow: 0 24px 80px #29463844;
 }
 
@@ -305,18 +309,25 @@ dialog::backdrop {
   backdrop-filter: blur(3px);
 }
 
-/* Durchgehende grüne Innenfläche */
+/* Weißer Außenbereich für Türchenangabe und Schließen */
 
-.modal {
-  padding: clamp(22px, 5vw, 40px);
-  background: linear-gradient(145deg, #EAF3EC, #D7E9DD);
+.modal-outer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
+/* Türchenangabe liegt außerhalb der grünen Fläche */
+
 .modal-top {
+  flex: 0 0 auto;
+  min-height: 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  padding: 0 8px 10px;
 }
 
 .modal-kicker {
@@ -334,40 +345,70 @@ dialog::backdrop {
   cursor: pointer;
   line-height: 1;
   flex-shrink: 0;
+  padding: 0 5px;
 }
+
+/* Durchgehende grüne Innenfläche */
+
+.modal {
+  flex: 1;
+  min-height: 0;
+  padding: clamp(16px, 3vw, 30px);
+
+  background: linear-gradient(145deg, #EAF3EC, #D7E9DD);
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+/* Überschrift im grünen Bereich */
 
 .modal h2 {
+  flex: 0 0 auto;
   color: var(--logo-green);
-  font-size: clamp(27px, 5vw, 39px);
+  font-size: clamp(23px, 3vw, 36px);
   font-weight: normal;
-  line-height: 1.2;
-  margin: 22px 0;
+  line-height: 1.15;
+  text-align: left;
+  margin: 0 0 14px;
 }
 
-/* Popup-Bild ohne zusätzliche Hintergrundfläche */
+/* Bild nutzt den verfügbaren Platz */
 
 .modal-art {
-  margin: 22px 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  margin: 0;
   padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background: transparent;
-  display: grid;
-  place-items: center;
   border: none;
+  overflow: hidden;
 }
 
 .popup-image {
   display: block;
   width: 100%;
-  max-height: 55vh;
+  height: 100%;
   object-fit: contain;
 }
 
+/* Spruch am unteren Rand der grünen Fläche */
+
 .modal-copy {
+  flex: 0 0 auto;
   white-space: pre-line;
-  font-size: 17px;
-  line-height: 1.8;
+  font-size: clamp(14px, 1.6vw, 18px);
+  line-height: 1.45;
   color: var(--green-dark);
-  margin-top: 24px;
+  margin-top: 14px;
 }
 
 /* =====================================
@@ -435,24 +476,56 @@ dialog::backdrop {
   }
 
   dialog {
-    width: 96vw;
+    width: min(94vw, 94vh);
+    height: min(94vw, 94vh);
+    max-width: 94vw;
+    max-height: 94vh;
     padding: 9px;
   }
 
-  .modal {
-    padding: 20px;
+  .modal-top {
+    min-height: 38px;
+    padding: 0 4px 7px;
   }
 
-  .modal h2 {
+  .modal-kicker {
+    font-size: 8px;
+    letter-spacing: 0.13em;
+  }
+
+  .close {
     font-size: 27px;
   }
 
-  .popup-image {
-    max-height: 48vh;
+  .modal {
+    padding: 14px;
+  }
+
+  .modal h2 {
+    font-size: clamp(19px, 5vw, 27px);
+    margin-bottom: 10px;
   }
 
   .modal-copy {
-    font-size: 16px;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-height: 600px) {
+  dialog {
+    width: min(90vh, 90vw);
+    height: min(90vh, 90vw);
+  }
+
+  .modal h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .modal-copy {
+    font-size: 13px;
+    margin-top: 8px;
   }
 }
 
@@ -512,11 +585,13 @@ dialog::backdrop {
 
 </main>
 
-<!-- POPUP FÜR DIE SPRÜCHE UND BILDER -->
+<!-- POPUP -->
 
 <dialog id="storyDialog" aria-labelledby="storyTitle">
 
-  <div class="modal">
+  <div class="modal-outer">
+
+    <!-- Weißer Bereich außerhalb der grünen Fläche -->
 
     <div class="modal-top">
 
@@ -531,17 +606,23 @@ dialog::backdrop {
 
     </div>
 
-    <h2 id="storyTitle"></h2>
+    <!-- Grüne Innenfläche -->
 
-    <div class="modal-art">
-      <img
-        id="storyImage"
-        src=""
-        alt=""
-        class="popup-image">
+    <div class="modal">
+
+      <h2 id="storyTitle"></h2>
+
+      <div class="modal-art">
+        <img
+          id="storyImage"
+          src=""
+          alt=""
+          class="popup-image">
+      </div>
+
+      <div class="modal-copy" id="storyText"></div>
+
     </div>
-
-    <div class="modal-copy" id="storyText"></div>
 
   </div>
 
