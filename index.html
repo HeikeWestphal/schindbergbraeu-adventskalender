@@ -160,7 +160,7 @@ body {
     border-color 0.2s;
 }
 
-/* Kalenderbilder vollständig anzeigen */
+/* Bild in geöffneten Türchen */
 
 .door-image {
   position: absolute;
@@ -172,37 +172,22 @@ body {
   z-index: 1;
 }
 
-/* Weißer Schleier bei noch ungeöffneten Türchen */
+/* Ungeöffnete Türchen zeigen kein Bild */
 
-.door:not(.opened)::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.38);
-  z-index: 2;
-  pointer-events: none;
+.door:not(.opened) .door-image {
+  display: none;
 }
 
-/* Bei geöffneten Türchen verschwindet der Schleier */
+/* Geöffnete Türchen zeigen das Bild vollständig */
+
+.door.opened .door-image {
+  display: block;
+}
+
+/* Kein Schleier über geöffneten Bildern */
 
 .door.opened::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* Dekorativer Innenrahmen */
-
-.door::before {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  border: 1px solid #B8D5C288;
-  pointer-events: none;
-  z-index: 3;
+  content: none;
 }
 
 .door:hover:not(:disabled) {
@@ -214,6 +199,17 @@ body {
 .door:focus-visible {
   outline: 3px solid var(--logo-gold);
   outline-offset: 3px;
+}
+
+/* Dekorativer Innenrahmen */
+
+.door::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid #B8D5C288;
+  pointer-events: none;
+  z-index: 3;
 }
 
 .number {
@@ -303,10 +299,9 @@ dialog {
   height: min(88vw, 88vh, 820px);
   max-width: 94vw;
   max-height: 94vh;
-
   aspect-ratio: 1 / 1;
-  overflow: hidden;
 
+  overflow: hidden;
   padding: 14px;
   border: 1px solid var(--logo-gold);
   background: #FFFFFF;
@@ -320,7 +315,7 @@ dialog::backdrop {
   backdrop-filter: blur(3px);
 }
 
-/* Weißer Außenbereich für Türchenangabe und Schließen */
+/* Weißer Außenbereich */
 
 .modal-outer {
   height: 100%;
@@ -329,7 +324,7 @@ dialog::backdrop {
   min-height: 0;
 }
 
-/* Türchenangabe liegt außerhalb der grünen Fläche */
+/* Türchenangabe und Schließen-Kreuz */
 
 .modal-top {
   flex: 0 0 auto;
@@ -374,7 +369,7 @@ dialog::backdrop {
   overflow: hidden;
 }
 
-/* Überschrift im grünen Bereich */
+/* Überschrift */
 
 .modal h2 {
   flex: 0 0 auto;
@@ -386,7 +381,7 @@ dialog::backdrop {
   margin: 0 0 14px;
 }
 
-/* Bild nutzt den verfügbaren Platz */
+/* Bild */
 
 .modal-art {
   flex: 1 1 auto;
@@ -411,7 +406,7 @@ dialog::backdrop {
   object-fit: contain;
 }
 
-/* Spruch am unteren Rand der grünen Fläche */
+/* Spruch */
 
 .modal-copy {
   flex: 0 0 auto;
@@ -602,7 +597,7 @@ dialog::backdrop {
 
   <div class="modal-outer">
 
-    <!-- Weißer Bereich außerhalb der grünen Fläche -->
+    <!-- Weißer Außenbereich -->
 
     <div class="modal-top">
 
@@ -888,8 +883,12 @@ function render() {
 
     image.className = "door-image";
     image.src = getImagePath(day);
-    image.alt = `Bild für Türchen ${day}`;
+    image.alt = seen ? `Bild für Türchen ${day}` : "";
     image.loading = "lazy";
+
+    /* Bild nur bei bereits geöffneten Türchen zeigen */
+
+    image.style.display = seen ? "block" : "none";
 
     image.onerror = () => {
       image.style.display = "none";
@@ -975,6 +974,8 @@ function openStory(day) {
   popupImage.onload = () => {
     popupImage.style.display = "block";
   };
+
+  /* Kalender aktualisieren: Bild jetzt sichtbar */
 
   render();
 
