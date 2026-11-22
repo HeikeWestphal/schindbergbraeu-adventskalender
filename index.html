@@ -25,9 +25,7 @@
   --rose: #F8E8E5;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -45,9 +43,7 @@ body {
   padding: 25px 24px 60px;
 }
 
-/* =====================================
-   KOPFBEREICH
-===================================== */
+/* KOPFBEREICH */
 
 .hero {
   text-align: center;
@@ -124,9 +120,7 @@ body {
   font-weight: normal;
 }
 
-/* =====================================
-   ADVENTSTÜRCHEN
-===================================== */
+/* ADVENTSTÜRCHEN */
 
 .calendar {
   display: grid;
@@ -269,9 +263,7 @@ body {
   filter: grayscale(0.25);
 }
 
-/* =====================================
-   HINWEIS UND FUSSZEILE
-===================================== */
+/* HINWEIS UND FUSSZEILE */
 
 .hint {
   text-align: center;
@@ -295,9 +287,7 @@ footer strong {
   letter-spacing: 0.1em;
 }
 
-/* =====================================
-   POPUP - QUADRATISCHER AUFBAU
-===================================== */
+/* POPUP - QUADRATISCHER AUFBAU */
 
 dialog {
   width: min(88vw, 88vh, 820px);
@@ -422,9 +412,7 @@ dialog::backdrop {
   margin-top: 14px;
 }
 
-/* =====================================
-   TABLET
-===================================== */
+/* TABLET */
 
 @media (max-width: 950px) {
   .calendar {
@@ -433,9 +421,7 @@ dialog::backdrop {
   }
 }
 
-/* =====================================
-   SMARTPHONE
-===================================== */
+/* SMARTPHONE */
 
 @media (max-width: 760px) {
   .page {
@@ -545,7 +531,6 @@ dialog::backdrop {
     transition: none;
   }
 }
-
 </style>
 </head>
 
@@ -584,10 +569,7 @@ dialog::backdrop {
     aria-label="Adventskalender mit 24 Türchen">
   </section>
 
-  <p class="hint">
-    Im Vorschau-Modus sind alle Türchen geöffnet.
-    Später lässt sich jedes Türchen passend zum Kalendertag freischalten.
-  </p>
+  <p class="hint" id="calendarHint"></p>
 
   <footer>
     <strong>SCHINDBERGbräu</strong><br>
@@ -794,19 +776,51 @@ const stories = [
    VORSCHAU UND DATUMSFREIGABE
 ========================================== */
 
-/* true = alle Türchen zum Testen geöffnet.
-   Für den echten Adventskalender auf false setzen. */
+/*
+   true  = alle Türchen sind zum Testen anklickbar.
+   false = die echte Tagesfreigabe ist aktiv.
+
+   Für den Start des echten Adventskalenders
+   diesen Wert auf false setzen.
+*/
 
 const PREVIEW_MODE = true;
+
+
+/* ==========================================
+   DATUMSPRÜFUNG
+========================================== */
 
 const currentDate = new Date();
 
 function isAvailable(day) {
-  return PREVIEW_MODE ||
-    (
-      currentDate.getMonth() === 11 &&
-      currentDate.getDate() >= day
-    );
+
+  // Im Vorschau-Modus sind alle Türchen freigegeben.
+  if (PREVIEW_MODE) return true;
+
+  // Im echten Modus nur im Dezember 2026.
+  // Türchen 1 ab dem 1. Dezember,
+  // Türchen 2 ab dem 2. Dezember usw.
+  return (
+    currentDate.getFullYear() === 2026 &&
+    currentDate.getMonth() === 11 &&
+    currentDate.getDate() >= day
+  );
+}
+
+
+/* ==========================================
+   HINWEISTEXT AUTOMATISCH ANPASSEN
+========================================== */
+
+const calendarHint = document.getElementById("calendarHint");
+
+if (PREVIEW_MODE) {
+  calendarHint.textContent =
+    "Im Vorschau-Modus sind alle Türchen zum Testen freigegeben.";
+} else {
+  calendarHint.textContent =
+    "Jeden Tag öffnet sich ein neues Türchen. Bereits geöffnete Türchen bleiben natürlich erhalten.";
 }
 
 
@@ -819,6 +833,7 @@ const storageKey = "schindbergbraeu-advent-2026-opened";
 let opened = [];
 
 try {
+
   const saved = JSON.parse(
     localStorage.getItem(storageKey) || "[]"
   );
@@ -938,6 +953,10 @@ function openStory(day) {
 
   const story = stories[day - 1];
 
+  if (!story) return;
+
+  /* Geöffnetes Türchen speichern */
+
   if (!opened.includes(day)) {
 
     opened.push(day);
@@ -947,9 +966,13 @@ function openStory(day) {
         storageKey,
         JSON.stringify(opened)
       );
-    } catch (e) {}
+    } catch (e) {
+      console.warn("Geöffnete Türchen konnten nicht gespeichert werden.");
+    }
 
   }
+
+  /* Popup-Inhalte setzen */
 
   document.getElementById("modalDay").textContent =
     `Türchen ${day} · Schindbergbräu Advent`;
